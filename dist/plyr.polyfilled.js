@@ -254,7 +254,7 @@ typeof navigator === "object" && (function (global, factory) {
     return store[key] || (store[key] = value !== undefined ? value : {});
   })('versions', []).push({
     version: '3.1.3',
-    mode: 'global',
+    mode:  'global',
     copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
   });
   });
@@ -1190,7 +1190,7 @@ typeof navigator === "object" && (function (global, factory) {
   if (IteratorPrototype == undefined) IteratorPrototype = {};
 
   // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-  if (!has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
+  if ( !has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
 
   var iteratorsCore = {
     IteratorPrototype: IteratorPrototype,
@@ -1277,7 +1277,7 @@ typeof navigator === "object" && (function (global, factory) {
     if (anyNativeIterator) {
       CurrentIteratorPrototype = objectGetPrototypeOf(anyNativeIterator.call(new Iterable()));
       if (IteratorPrototype$2 !== Object.prototype && CurrentIteratorPrototype.next) {
-        if (objectGetPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype$2) {
+        if ( objectGetPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype$2) {
           if (objectSetPrototypeOf) {
             objectSetPrototypeOf(CurrentIteratorPrototype, IteratorPrototype$2);
           } else if (typeof CurrentIteratorPrototype[ITERATOR$1] != 'function') {
@@ -1296,7 +1296,7 @@ typeof navigator === "object" && (function (global, factory) {
     }
 
     // define iterator
-    if (IterablePrototype[ITERATOR$1] !== defaultIterator) {
+    if ( IterablePrototype[ITERATOR$1] !== defaultIterator) {
       hide(IterablePrototype, ITERATOR$1, defaultIterator);
     }
     iterators[NAME] = defaultIterator;
@@ -5225,7 +5225,7 @@ typeof navigator === "object" && (function (global, factory) {
       return Array.from(document.querySelectorAll(selector)).includes(this);
     }
 
-    var matches = match;
+    var matches =  match;
     return matches.call(element, selector);
   }
 
@@ -6061,7 +6061,7 @@ typeof navigator === "object" && (function (global, factory) {
     };
 
     // wrap fetch result
-    if (typeof $fetch == 'function') _export({ global: true, enumerable: true, forced: true }, {
+    if ( typeof $fetch == 'function') _export({ global: true, enumerable: true, forced: true }, {
       // eslint-disable-next-line no-unused-vars
       fetch: function fetch(input) {
         return promiseResolve(PromiseConstructor, $fetch.apply(global_1, arguments));
@@ -6089,11 +6089,11 @@ typeof navigator === "object" && (function (global, factory) {
     }
   });
 
-  _export({ target: PROMISE, stat: true, forced: FORCED$2 }, {
+  _export({ target: PROMISE, stat: true, forced:  FORCED$2 }, {
     // `Promise.resolve` method
     // https://tc39.github.io/ecma262/#sec-promise.resolve
     resolve: function resolve(x) {
-      return promiseResolve(this, x);
+      return promiseResolve( this, x);
     }
   });
 
@@ -6321,7 +6321,7 @@ typeof navigator === "object" && (function (global, factory) {
   var browser = {
     isIE:
     /* @cc_on!@ */
-    !!document.documentMode,
+     !!document.documentMode,
     isEdge: window.navigator.userAgent.includes('Edge'),
     isWebkit: 'WebkitAppearance' in document.documentElement.style && !/Edge/.test(navigator.userAgent),
     isIPhone: /(iPhone|iPod)/gi.test(navigator.platform),
@@ -6727,7 +6727,7 @@ typeof navigator === "object" && (function (global, factory) {
       return Array.from(document.querySelectorAll(selector)).includes(this);
     }
 
-    var method = match;
+    var method =  match;
     return method.call(element, selector);
   } // Find all elements
 
@@ -13862,12 +13862,14 @@ typeof navigator === "object" && (function (global, factory) {
       if (!support.check().api) {
         this.debug.error('Setup failed: no support');
         return;
-      } // Cache original element state for .destroy()
+      } // Old: Cache original element state for .destroy()
+      // const clone = this.media.cloneNode(true);
+      // clone.autoplay = false;
+      // this.elements.original = clone;
+      // New: Don't clone node for react. React clear DOM on component unmount
 
 
-      var clone = this.media.cloneNode(true);
-      clone.autoplay = false;
-      this.elements.original = clone; // Set media type based on tag or data attribute
+      this.elements.original = this.media; // Set media type based on tag or data attribute
       // Supported: video, audio, vimeo, youtube
 
       var type = this.media.tagName.toLowerCase(); // Embed properties

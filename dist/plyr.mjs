@@ -109,7 +109,7 @@ function matches(element, selector) {
     return Array.from(document.querySelectorAll(selector)).includes(this);
   }
 
-  var matches = match;
+  var matches =  match;
   return matches.call(element, selector);
 }
 
@@ -570,7 +570,7 @@ function repaint(element, delay) {
 var browser = {
   isIE:
   /* @cc_on!@ */
-  !!document.documentMode,
+   !!document.documentMode,
   isEdge: window.navigator.userAgent.includes('Edge'),
   isWebkit: 'WebkitAppearance' in document.documentElement.style && !/Edge/.test(navigator.userAgent),
   isIPhone: /(iPhone|iPod)/gi.test(navigator.platform),
@@ -977,7 +977,7 @@ function matches$1(element, selector) {
     return Array.from(document.querySelectorAll(selector)).includes(this);
   }
 
-  var method = match;
+  var method =  match;
   return method.call(element, selector);
 } // Find all elements
 
@@ -7950,12 +7950,14 @@ function () {
     if (!support.check().api) {
       this.debug.error('Setup failed: no support');
       return;
-    } // Cache original element state for .destroy()
+    } // Old: Cache original element state for .destroy()
+    // const clone = this.media.cloneNode(true);
+    // clone.autoplay = false;
+    // this.elements.original = clone;
+    // New: Don't clone node for react. React clear DOM on component unmount
 
 
-    var clone = this.media.cloneNode(true);
-    clone.autoplay = false;
-    this.elements.original = clone; // Set media type based on tag or data attribute
+    this.elements.original = this.media; // Set media type based on tag or data attribute
     // Supported: video, audio, vimeo, youtube
 
     var type = this.media.tagName.toLowerCase(); // Embed properties

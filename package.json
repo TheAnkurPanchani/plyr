@@ -22,17 +22,17 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git://github.com/sampotts/plyr.git"
+        "url": "git://github.com/TheAnkurPanchani/plyr.git"
     },
     "bugs": {
-        "url": "https://github.com/sampotts/plyr/issues"
+        "url": "https://github.com/TheAnkurPanchani/plyr/issues"
     },
     "browserslist": "> 1%",
     "scripts": {
         "build": "gulp build",
         "lint": "eslint src/js && npm run-script remark",
         "lint:fix": "eslint --fix src/js",
-        "remark": "remark -f --use 'validate-links=repository:\"sampotts/plyr\"' '{,!(node_modules),.?**/}*.md'",
+        "remark": "remark -f --use 'validate-links=repository:\"TheAnkurPanchani/plyr\"' '{,!(node_modules),.?**/}*.md'",
         "deploy": "yarn lint && gulp deploy"
     },
     "devDependencies": {

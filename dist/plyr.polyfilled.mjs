@@ -248,7 +248,7 @@ var store = global_1[SHARED] || setGlobal(SHARED, {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: '3.1.3',
-  mode: 'global',
+  mode:  'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 });
@@ -1184,7 +1184,7 @@ if ([].keys) {
 if (IteratorPrototype == undefined) IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-if (!has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
+if ( !has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
 
 var iteratorsCore = {
   IteratorPrototype: IteratorPrototype,
@@ -1271,7 +1271,7 @@ var defineIterator = function (Iterable, NAME, IteratorConstructor, next, DEFAUL
   if (anyNativeIterator) {
     CurrentIteratorPrototype = objectGetPrototypeOf(anyNativeIterator.call(new Iterable()));
     if (IteratorPrototype$2 !== Object.prototype && CurrentIteratorPrototype.next) {
-      if (objectGetPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype$2) {
+      if ( objectGetPrototypeOf(CurrentIteratorPrototype) !== IteratorPrototype$2) {
         if (objectSetPrototypeOf) {
           objectSetPrototypeOf(CurrentIteratorPrototype, IteratorPrototype$2);
         } else if (typeof CurrentIteratorPrototype[ITERATOR$1] != 'function') {
@@ -1290,7 +1290,7 @@ var defineIterator = function (Iterable, NAME, IteratorConstructor, next, DEFAUL
   }
 
   // define iterator
-  if (IterablePrototype[ITERATOR$1] !== defaultIterator) {
+  if ( IterablePrototype[ITERATOR$1] !== defaultIterator) {
     hide(IterablePrototype, ITERATOR$1, defaultIterator);
   }
   iterators[NAME] = defaultIterator;
@@ -5219,7 +5219,7 @@ function matches(element, selector) {
     return Array.from(document.querySelectorAll(selector)).includes(this);
   }
 
-  var matches = match;
+  var matches =  match;
   return matches.call(element, selector);
 }
 
@@ -6055,7 +6055,7 @@ if (FORCED$2) {
   };
 
   // wrap fetch result
-  if (typeof $fetch == 'function') _export({ global: true, enumerable: true, forced: true }, {
+  if ( typeof $fetch == 'function') _export({ global: true, enumerable: true, forced: true }, {
     // eslint-disable-next-line no-unused-vars
     fetch: function fetch(input) {
       return promiseResolve(PromiseConstructor, $fetch.apply(global_1, arguments));
@@ -6083,11 +6083,11 @@ _export({ target: PROMISE, stat: true, forced: FORCED$2 }, {
   }
 });
 
-_export({ target: PROMISE, stat: true, forced: FORCED$2 }, {
+_export({ target: PROMISE, stat: true, forced:  FORCED$2 }, {
   // `Promise.resolve` method
   // https://tc39.github.io/ecma262/#sec-promise.resolve
   resolve: function resolve(x) {
-    return promiseResolve(this, x);
+    return promiseResolve( this, x);
   }
 });
 
@@ -6315,7 +6315,7 @@ function repaint(element, delay) {
 var browser = {
   isIE:
   /* @cc_on!@ */
-  !!document.documentMode,
+   !!document.documentMode,
   isEdge: window.navigator.userAgent.includes('Edge'),
   isWebkit: 'WebkitAppearance' in document.documentElement.style && !/Edge/.test(navigator.userAgent),
   isIPhone: /(iPhone|iPod)/gi.test(navigator.platform),
@@ -6721,7 +6721,7 @@ function matches$1(element, selector) {
     return Array.from(document.querySelectorAll(selector)).includes(this);
   }
 
-  var method = match;
+  var method =  match;
   return method.call(element, selector);
 } // Find all elements
 
@@ -13856,12 +13856,14 @@ function () {
     if (!support.check().api) {
       this.debug.error('Setup failed: no support');
       return;
-    } // Cache original element state for .destroy()
+    } // Old: Cache original element state for .destroy()
+    // const clone = this.media.cloneNode(true);
+    // clone.autoplay = false;
+    // this.elements.original = clone;
+    // New: Don't clone node for react. React clear DOM on component unmount
 
 
-    var clone = this.media.cloneNode(true);
-    clone.autoplay = false;
-    this.elements.original = clone; // Set media type based on tag or data attribute
+    this.elements.original = this.media; // Set media type based on tag or data attribute
     // Supported: video, audio, vimeo, youtube
 
     var type = this.media.tagName.toLowerCase(); // Embed properties
