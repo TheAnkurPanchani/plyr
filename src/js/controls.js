@@ -58,6 +58,8 @@ const controls = {
                 restart: getElement.call(this, this.config.selectors.buttons.restart),
                 rewind: getElement.call(this, this.config.selectors.buttons.rewind),
                 fastForward: getElement.call(this, this.config.selectors.buttons.fastForward),
+                previous: getElement.call(this, this.config.selectors.buttons.previous),
+                next: getElement.call(this, this.config.selectors.buttons.next),
                 mute: getElement.call(this, this.config.selectors.buttons.mute),
                 pip: getElement.call(this, this.config.selectors.buttons.pip),
                 airplay: getElement.call(this, this.config.selectors.buttons.airplay),
@@ -1292,6 +1294,11 @@ const controls = {
                 container.appendChild(createButton.call(this, 'restart', defaultAttributes));
             }
 
+            // Previous button
+            if (control === 'previous') {
+                container.appendChild(createButton.call(this, 'previous', defaultAttributes));
+            }
+
             // Rewind button
             if (control === 'rewind') {
                 container.appendChild(createButton.call(this, 'rewind', defaultAttributes));
@@ -1305,6 +1312,11 @@ const controls = {
             // Fast forward button
             if (control === 'fast-forward') {
                 container.appendChild(createButton.call(this, 'fast-forward', defaultAttributes));
+            }
+
+            // Next button
+            if (control === 'next') {
+                container.appendChild(createButton.call(this, 'next', defaultAttributes));
             }
 
             // Progress

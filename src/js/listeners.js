@@ -553,8 +553,18 @@ class Listeners {
         // Rewind
         this.bind(elements.buttons.rewind, 'click', player.rewind, 'rewind');
 
-        // Rewind
+        // FastForward
         this.bind(elements.buttons.fastForward, 'click', player.forward, 'fastForward');
+
+        // Previous
+        this.bind(elements.buttons.previous, 'click', () => {
+            triggerEvent.call(player, player.media, 'previous');
+        }, 'previous');
+
+        // Next
+        this.bind(elements.buttons.next, 'click', () => {
+            triggerEvent.call(player, player.media, 'next');
+        }, 'next');
 
         // Mute toggle
         this.bind(

@@ -123,9 +123,11 @@ const defaults = {
     controls: [
         'play-large',
         // 'restart',
+        // 'previous',
         // 'rewind',
         'play',
         // 'fast-forward',
+        // 'next',
         'progress',
         'current-time',
         // 'duration',
@@ -143,10 +145,12 @@ const defaults = {
     // Localisation
     i18n: {
         restart: 'Restart',
+        previous: 'Previous',
         rewind: 'Rewind {seektime}s',
         play: 'Play',
         pause: 'Pause',
         fastForward: 'Forward {seektime}s',
+        next: 'Next',
         seek: 'Seek',
         seekLabel: '{currentTime} of {duration}',
         played: 'Played',
@@ -211,6 +215,8 @@ const defaults = {
         restart: null,
         rewind: null,
         fastForward: null,
+        previous: null,
+        next: null,
         mute: null,
         volume: null,
         captions: null,
@@ -259,6 +265,8 @@ const defaults = {
         'controlshidden',
         'controlsshown',
         'ready',
+        'previous',
+        'next',
 
         // YouTube
         'statechange',
@@ -294,6 +302,8 @@ const defaults = {
             restart: '[data-plyr="restart"]',
             rewind: '[data-plyr="rewind"]',
             fastForward: '[data-plyr="fast-forward"]',
+            previous: '[data-plyr="previous"]',
+            next: '[data-plyr="next"]',
             mute: '[data-plyr="mute"]',
             captions: '[data-plyr="captions"]',
             download: '[data-plyr="download"]',
