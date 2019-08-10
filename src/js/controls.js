@@ -261,6 +261,10 @@ const controls = {
 
         const button = createElement(props.element);
 
+        if (buttonType == 'skip' && props.label) {
+            button.innerText = i18n.get(props.label, this.config)
+        }
+
         // Setup toggle icon and labels
         if (props.toggle) {
             // Icon
@@ -1278,6 +1282,15 @@ const controls = {
         // Larger overlaid play button
         if (this.config.controls.includes('play-large')) {
             this.elements.container.appendChild(createButton.call(this, 'play-large'));
+        }
+
+        // Larger overlaid play button
+        if (this.config.controls.includes('skip')) {
+            this.elements.container.appendChild(createButton.call(this, 'skip', {
+                icon: 'next',
+                label: 'skip',
+                class: 'plyr__skip__control--overlaid'
+            }));
         }
 
         // Create the container

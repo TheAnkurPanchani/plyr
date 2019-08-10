@@ -98,6 +98,36 @@ a.plyr__control {
     }
 }
 
+// Large skip button (video only)
+.plyr__skip__control--overlaid {
+    background: rgba(0, 0, 0, 0.32);
+    border: 1px solid white;
+    border-radius: 0;
+    color: white;
+    right: -1px;
+    padding: ceil($plyr-control-spacing * 0.8) ceil($plyr-control-spacing * 1.6);
+    position: absolute;
+    bottom: 64px;
+    z-index: 3;
+    opacity: 0.64;
+    display: flex;
+    align-items: center;
+
+    // Offset icon to make the play button look right
+    svg {
+        left: 2px;
+        margin-left: 4px;
+        position: relative;
+        display: flex;
+    }
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+        // background: $plyr-video-control-bg-hover;
+    }
+}
+
 .plyr--playing .plyr__control--overlaid {
     opacity: 0;
     visibility: hidden;

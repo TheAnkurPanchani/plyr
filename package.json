@@ -7,7 +7,7 @@
     "main": "dist/plyr.js",
     "module": "dist/plyr.min.mjs",
     "jsnext:main": "dist/plyr.min.mjs",
-    "browser": "dist/plyr.min.js",
+    "browser": "dist/plyr.js",
     "sass": "src/sass/plyr.scss",
     "style": "dist/plyr.css",
     "keywords": [

@@ -7703,7 +7703,12 @@ typeof navigator === "object" && (function (global, factory) {
 
       }
 
-      var button = createElement(props.element); // Setup toggle icon and labels
+      var button = createElement(props.element);
+
+      if (buttonType == 'skip' && props.label) {
+        button.innerText = i18n.get(props.label, this.config);
+      } // Setup toggle icon and labels
+
 
       if (props.toggle) {
         // Icon
@@ -8608,6 +8613,15 @@ typeof navigator === "object" && (function (global, factory) {
 
       if (this.config.controls.includes('play-large')) {
         this.elements.container.appendChild(createButton.call(this, 'play-large'));
+      } // Larger overlaid play button
+
+
+      if (this.config.controls.includes('skip')) {
+        this.elements.container.appendChild(createButton.call(this, 'skip', {
+          icon: 'next',
+          label: 'skip',
+          class: 'plyr__skip__control--overlaid'
+        }));
       } // Create the container
 
 
@@ -9532,6 +9546,7 @@ typeof navigator === "object" && (function (global, factory) {
       play: 'Play',
       pause: 'Pause',
       fastForward: 'Forward {seektime}s',
+      skip: 'Skip',
       next: 'Next',
       seek: 'Seek',
       seekLabel: '{currentTime} of {duration}',
@@ -10893,6 +10908,9 @@ typeof navigator === "object" && (function (global, factory) {
         }, 'previous'); // Next
 
         this.bind(elements.buttons.next, 'click', function () {
+          triggerEvent.call(player, player.media, 'next');
+        }, 'next');
+        this.bind(elements.buttons.skip, 'click', function () {
           triggerEvent.call(player, player.media, 'next');
         }, 'next'); // Mute toggle
 
