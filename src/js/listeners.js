@@ -569,6 +569,11 @@ class Listeners {
             triggerEvent.call(player, player.media, 'next');
         }, 'next');
 
+        // Close
+        this.bind(elements.buttons.close, 'click', () => {
+            triggerEvent.call(player, player.media, 'close');
+        }, 'close');
+
         // Mute toggle
         this.bind(
             elements.buttons.mute,

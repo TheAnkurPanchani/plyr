@@ -90,10 +90,6 @@
     pointer-events: none;
     transform: translateY(100%);
 }
-.plyr--video.plyr--hide-controls .plyr__skip__control--overlaid {
-    opacity: 0;
-    pointer-events: none;
-}
 
 // Some options are hidden by default
 .plyr [data-plyr='captions'],

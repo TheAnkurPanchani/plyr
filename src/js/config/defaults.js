@@ -150,6 +150,7 @@ const defaults = {
         play: 'Play',
         pause: 'Pause',
         fastForward: 'Forward {seektime}s',
+        close: 'Close',
         skip: 'Skip',
         next: 'Next',
         seek: 'Seek',

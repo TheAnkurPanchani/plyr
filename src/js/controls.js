@@ -1279,17 +1279,36 @@ const controls = {
         } = controls;
         this.elements.controls = null;
 
+        // Loader
+        const loaderContainer = createElement.call(this, 'div', {
+            class: 'plyr__buffer__loader_container'
+        })
+        const loader = createElement.call(this, 'div', {
+            class: 'plyr__buffer__loader'
+        })
+        loaderContainer.appendChild(loader)
+        this.elements.container.appendChild(loaderContainer);
+
         // Larger overlaid play button
         if (this.config.controls.includes('play-large')) {
             this.elements.container.appendChild(createButton.call(this, 'play-large'));
         }
 
-        // Larger overlaid play button
+        // Larger overlaid skip button
         if (this.config.controls.includes('skip')) {
             this.elements.container.appendChild(createButton.call(this, 'skip', {
                 icon: 'next',
                 label: 'skip',
                 class: 'plyr__skip__control--overlaid'
+            }));
+        }
+
+        // Larger overlaid close button
+        if (this.config.controls.includes('close')) {
+            this.elements.container.appendChild(createButton.call(this, 'close', {
+                icon: 'close',
+                label: 'close',
+                class: 'plyr__close__control--overlaid'
             }));
         }
 

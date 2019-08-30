@@ -2804,11 +2804,20 @@ typeof navigator === "object" && (function (global, factory) {
           setQualityMenu = controls.setQualityMenu,
           setSpeedMenu = controls.setSpeedMenu,
           showMenuPanel = controls.showMenuPanel;
-      this.elements.controls = null; // Larger overlaid play button
+      this.elements.controls = null; // Loader
+
+      var loaderContainer = createElement.call(this, 'div', {
+        class: 'plyr__buffer__loader_container'
+      });
+      var loader = createElement.call(this, 'div', {
+        class: 'plyr__buffer__loader'
+      });
+      loaderContainer.appendChild(loader);
+      this.elements.container.appendChild(loaderContainer); // Larger overlaid play button
 
       if (this.config.controls.includes('play-large')) {
         this.elements.container.appendChild(createButton.call(this, 'play-large'));
-      } // Larger overlaid play button
+      } // Larger overlaid skip button
 
 
       if (this.config.controls.includes('skip')) {
@@ -2816,6 +2825,15 @@ typeof navigator === "object" && (function (global, factory) {
           icon: 'next',
           label: 'skip',
           class: 'plyr__skip__control--overlaid'
+        }));
+      } // Larger overlaid close button
+
+
+      if (this.config.controls.includes('close')) {
+        this.elements.container.appendChild(createButton.call(this, 'close', {
+          icon: 'close',
+          label: 'close',
+          class: 'plyr__close__control--overlaid'
         }));
       } // Create the container
 
@@ -3741,6 +3759,7 @@ typeof navigator === "object" && (function (global, factory) {
       play: 'Play',
       pause: 'Pause',
       fastForward: 'Forward {seektime}s',
+      close: 'Close',
       skip: 'Skip',
       next: 'Next',
       seek: 'Seek',
@@ -5095,7 +5114,11 @@ typeof navigator === "object" && (function (global, factory) {
         }, 'next');
         this.bind(elements.buttons.skip, 'click', function () {
           triggerEvent.call(player, player.media, 'next');
-        }, 'next'); // Mute toggle
+        }, 'next'); // Close
+
+        this.bind(elements.buttons.close, 'click', function () {
+          triggerEvent.call(player, player.media, 'close');
+        }, 'close'); // Mute toggle
 
         this.bind(elements.buttons.mute, 'click', function () {
           player.muted = !player.muted;

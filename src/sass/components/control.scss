@@ -128,11 +128,104 @@ a.plyr__control {
     }
 }
 
+// Large close button (video only)
+.plyr__close__control--overlaid {
+    background: rgba(0, 0, 0, 0.48);
+    border: 0;
+    border-radius: 100%;
+    color: $plyr-video-control-color;
+    top: 8px;
+    right: 8px;
+    position: absolute;
+    padding: ceil($plyr-control-spacing * 0.8) ceil($plyr-control-spacing * 0.8);
+    z-index: 3;
+
+    // Offset icon to make the play button look right
+    svg {
+        position: relative;
+    }
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+        // background: $plyr-video-control-bg-hover;
+    }
+}
+
+.plyr__buffer__loader_container {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.48);
+    transition: all .3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+// Buffer Loader (video only)
+.plyr__buffer__loader {
+    border: 0;
+    border-radius: 100%;
+    color: $plyr-video-control-color;
+    left: calc(50% - 4em);
+    top: calc(50% - 4em);
+    z-index: 2;
+
+    width: 8em;
+    height: 8em;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-left: 1.1em solid #ffffff;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.2s infinite linear;
+    animation: load8 1.2s infinite linear;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 .plyr--playing .plyr__control--overlaid {
     opacity: 0;
     visibility: hidden;
 }
 
 .plyr--full-ui.plyr--video .plyr__control--overlaid {
+    display: block;
+}
+
+.plyr--video.plyr--hide-controls .plyr__skip__control--overlaid,
+.plyr--video.plyr--hide-controls .plyr__close__control--overlaid {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.plyr--video.plyr--html5.plyr--loading.plyr--playing .plyr__buffer__loader_container {
+    // opacity: 1;
+    pointer-events: none;
     display: block;
 }
