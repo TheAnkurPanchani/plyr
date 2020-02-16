@@ -2,7 +2,7 @@ typeof navigator === "object" && (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define('Plyr', factory) :
   (global = global || self, global.Plyr = factory());
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -66,6 +66,10 @@ typeof navigator === "object" && (function (global, factory) {
   }
 
   function _iterableToArrayLimit(arr, i) {
+    if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+      return;
+    }
+
     var _arr = [];
     var _n = true;
     var _d = false;
@@ -928,9 +932,6 @@ typeof navigator === "object" && (function (global, factory) {
         case '[':
           // Attribute selector
           attributes[key] = value;
-          break;
-
-        default:
           break;
       }
     });
@@ -2125,9 +2126,6 @@ typeof navigator === "object" && (function (global, factory) {
           case 'speed':
             _this3.speed = parseFloat(value);
             break;
-
-          default:
-            break;
         }
 
         controls.showMenuPanel.call(_this3, 'home', is$1.keyboardEvent(event));
@@ -2235,9 +2233,6 @@ typeof navigator === "object" && (function (global, factory) {
           case 'playing':
           case 'progress':
             setProgress(this.elements.display.buffer, this.buffered * 100);
-            break;
-
-          default:
             break;
         }
       }
@@ -4709,19 +4704,6 @@ typeof navigator === "object" && (function (global, factory) {
               // L key
               player.loop = !player.loop;
               break;
-
-            /* case 73:
-                this.setLoop('start');
-                break;
-             case 76:
-                this.setLoop();
-                break;
-             case 79:
-                this.setLoop('end');
-                break; */
-
-            default:
-              break;
           } // Escape is handle natively when in full screen
           // So we only need to worry about non native
 
@@ -6389,9 +6371,6 @@ typeof navigator === "object" && (function (global, factory) {
 
                 assurePlaybackState$1.call(player, false);
                 break;
-
-              default:
-                break;
             }
 
             triggerEvent.call(player, player.elements.container, 'statechange', false, {
@@ -6804,9 +6783,6 @@ typeof navigator === "object" && (function (global, factory) {
               this.player.debug.warn("Non-fatal ad error: ".concat(adData.adError.getMessage()));
             }
 
-            break;
-
-          default:
             break;
         }
       }
@@ -7863,6 +7839,8 @@ typeof navigator === "object" && (function (global, factory) {
 
           if (_this2.config.playsinline) {
             _this2.media.setAttribute('playsinline', '');
+
+            _this2.media.setAttribute('webkit-playsinline', '');
           }
         } // Restore class hook
 
@@ -9199,4 +9177,4 @@ typeof navigator === "object" && (function (global, factory) {
 
   return Plyr;
 
-}));
+})));

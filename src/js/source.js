@@ -94,6 +94,7 @@ const source = {
                     }
                     if (this.config.playsinline) {
                         this.media.setAttribute('playsinline', '');
+                        this.media.setAttribute('webkit-playsinline', '');
                     }
                 }
 

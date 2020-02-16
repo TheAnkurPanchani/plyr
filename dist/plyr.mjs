@@ -60,6 +60,10 @@ function _iterableToArray(iter) {
 }
 
 function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -922,9 +926,6 @@ function getAttributesFromSelector(sel, existingAttributes) {
       case '[':
         // Attribute selector
         attributes[key] = value;
-        break;
-
-      default:
         break;
     }
   });
@@ -2119,9 +2120,6 @@ var controls = {
         case 'speed':
           _this3.speed = parseFloat(value);
           break;
-
-        default:
-          break;
       }
 
       controls.showMenuPanel.call(_this3, 'home', is$1.keyboardEvent(event));
@@ -2229,9 +2227,6 @@ var controls = {
         case 'playing':
         case 'progress':
           setProgress(this.elements.display.buffer, this.buffered * 100);
-          break;
-
-        default:
           break;
       }
     }
@@ -4703,19 +4698,6 @@ function () {
             // L key
             player.loop = !player.loop;
             break;
-
-          /* case 73:
-              this.setLoop('start');
-              break;
-           case 76:
-              this.setLoop();
-              break;
-           case 79:
-              this.setLoop('end');
-              break; */
-
-          default:
-            break;
         } // Escape is handle natively when in full screen
         // So we only need to worry about non native
 
@@ -6383,9 +6365,6 @@ var youtube = {
 
               assurePlaybackState$1.call(player, false);
               break;
-
-            default:
-              break;
           }
 
           triggerEvent.call(player, player.elements.container, 'statechange', false, {
@@ -6798,9 +6777,6 @@ function () {
             this.player.debug.warn("Non-fatal ad error: ".concat(adData.adError.getMessage()));
           }
 
-          break;
-
-        default:
           break;
       }
     }
@@ -7857,6 +7833,8 @@ var source = {
 
         if (_this2.config.playsinline) {
           _this2.media.setAttribute('playsinline', '');
+
+          _this2.media.setAttribute('webkit-playsinline', '');
         }
       } // Restore class hook
 
